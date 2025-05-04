@@ -5,8 +5,9 @@ chrome.runtime.onInstalled.addListener(function() {
 	});
 });
 
-chrome.browserAction.onClicked.addListener(function(tab) {
-	chrome.tabs.executeScript(tab.id, {
-		code: "run();"
+chrome.action.onClicked.addListener((tab) => {
+	chrome.scripting.executeScript({
+		target: { tabId: tab.id },
+		func: () => run()
 	});
 });
